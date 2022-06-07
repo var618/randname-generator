@@ -6,6 +6,7 @@ import (
 )
 
 func TestGenerateRoomWithoutSeparator(t *testing.T) {
-	str := GenerateRoomWithoutSeparator()
-	fmt.Println(str)
+	for i := 0; i < 20; i++ {
+		fmt.Println(GenerateRoomWithoutSeparator())
+	}
 }

@@ -3,7 +3,6 @@ package generator
 import (
 	"math/rand"
 	"strings"
-	"time"
 )
 
 
@@ -37,7 +36,7 @@ func randomAlphanumString(length int) string {
  * @returns {Array|string} Array element or string character.
  */
 func randomElement(arr []string) string {
-	return arr[randomInt(0, len(arr) - 1)]
+	return arr[randomInt(0, len(arr))]
 }
 
 /**
@@ -69,8 +68,7 @@ func randomHexString(length int) string {
  * @returns {number} Random int number.
  */
 func randomInt(min, max int) int {
-	rand.Seed(time.Now().UnixNano())
-	return rand.Intn(max - min + 1) + min
+	return rand.Intn(max - min) + min
 }
 
 /**
@@ -1171,8 +1169,8 @@ func GenerateRoomWithoutSeparator() string {
 	name := randomElement(PATTERNS)
 
 	for _hasTemplate(name) {
-		for template := range CATEGORIES {
-			word := randomElement(CATEGORIES[template])
+		for template, items := range CATEGORIES {
+			word := randomElement(items)
 			name = strings.Replace(name, template, word, 1)
 		}
 	}
